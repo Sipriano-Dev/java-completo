@@ -6,7 +6,7 @@ public class Main {
 				
 				JFrame janela = new JFrame();
 				janela.setTitle("Meu Primeiro Programa");
-				janela.setSize(600, 400);
+				janela.setSize(500, 500);
 				janela.setVisible(true);
 		}
 }
