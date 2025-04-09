@@ -14,8 +14,14 @@ public class CalcularNota {
         float trimestre3 = teclado.nextFloat();
 
         float media = (trimestre1 + trimestre2 + trimestre3) / 3;
+        System.out.println("A média é: " + media);
 
-        System.out.print("A média é: " + resultado);
+        if (media >= 6) {
+            System.out.println("APROVADO");
+        } else {
+            System.out.println("REPROVADO");
+        }
+
 
         teclado.close();
     }
