@@ -13,5 +13,7 @@ public class LoopWhile {
             }
             valor++;
         }
+
+        scan.close();
     }
 }
