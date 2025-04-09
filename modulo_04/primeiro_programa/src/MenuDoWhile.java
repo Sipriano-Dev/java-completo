@@ -4,7 +4,7 @@ public class MenuDoWhile {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
 
-        int opcao = 0;
+        int opcao;
 
         do {
             System.out.println("Escolha sua opção: ");
