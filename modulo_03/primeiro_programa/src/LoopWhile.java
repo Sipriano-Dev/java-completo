@@ -8,8 +8,10 @@ public class LoopWhile {
         int contador = scan.nextInt();
         int valor = 0;
         while (valor <= contador) {
-            System.out.println("Número " + valor);
-            valor = valor + 1;
+            if (valor % 2 == 0) {
+                System.out.println("Número " + valor);
+            }
+            valor++;
         }
     }
 }
