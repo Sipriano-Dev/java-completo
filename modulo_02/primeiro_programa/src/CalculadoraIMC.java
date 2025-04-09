@@ -1,11 +1,21 @@
+import java.util.Scanner;
+
 public class CalculadoraIMC {
     public static void main(String[] args) {
-        // peso div (altura * altura)
-        float peso = 90.0f;
-        float altura = 1.70f;
 
-        float resultado = peso / (altura * altura);
+        Scanner leitorTeclado = new Scanner(System.in);
+
+        // peso div (altura * altura)
+        System.out.print("Digite o seu peso: ");
+        float peso = leitorTeclado.nextFloat();
+
+        System.out.print("Digite sua altura em cm: ");
+        float altura = leitorTeclado.nextFloat();
+
+        float resultado = peso / ((altura / 100) * (altura / 100));
 
         System.out.println("O imc para o peso " + peso + " e altura " + " é " + resultado);
+
+        leitorTeclado.close();
     }
 }
