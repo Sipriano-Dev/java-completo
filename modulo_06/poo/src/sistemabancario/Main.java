@@ -4,31 +4,16 @@ public class Main {
     public static void main(String[] args) {
 
         Cliente fulano = new Cliente("123456789", "Fulano");
-        fulano.nome = "123456789";
-        fulano.cpf = "Fulano";
+        Conta contaFulano = new Conta(fulano, 1000, 50);
 
-        Conta contaFulano = new Conta();
-        contaFulano.titular = fulano;
-        contaFulano.numero = 1000;
-        contaFulano.saldo = 50;
-
-        //--------------------------------
-
-        Cliente cicrano = new Cliente();
-        cicrano.nome = "Cicrano";
-        cicrano.cpf = "987654321";
-
-        Conta contaCicrano = new Conta();
-        contaCicrano.titular = cicrano;
-        contaCicrano.numero = 1001;
-        contaCicrano.saldo = 0;
-
+        Cliente cicrano = new Cliente("987654321", "Cicrano");
+        Conta contaCicrano = new Conta(cicrano, 1001, -50);
 
         Banco sistemaBancario = new Banco();
 
         contaFulano.imprimirSaldo();
 
-        System.out.println("Depositando 50 reais");
+        System.out.println("Depositando 100 reais");
         sistemaBancario.depositar(contaFulano, 100d);
         contaFulano.imprimirSaldo();
 
