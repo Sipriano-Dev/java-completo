@@ -2,8 +2,8 @@ package sistemabancario;
 
 public class Cliente {
 
-    String cpf;
-    String nome;
+    public String cpf;
+    public String nome;
 
     public Cliente() {}
 

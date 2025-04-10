@@ -2,13 +2,12 @@ package sistemabancario;
 
 public class Conta {
 
-    Cliente titular;
-    int numero;
-    double saldo;
+    public Cliente titular;
+    public int numero;
+    public double saldo;
 
-    Conta(){};
 
-    Conta(Cliente titular, int numero, double saldo) {
+    public Conta(Cliente titular, int numero, double saldo) {
         if (titular == null) {
             //Lançar um erro no sistema
         }
@@ -19,7 +18,7 @@ public class Conta {
         }
     }
 
-    void imprimirSaldo() {
+    public void imprimirSaldo() {
         System.out.println("Saldo atual " + titular.nome + ": " + this.saldo);
     }
 
