@@ -5,6 +5,10 @@ public class Panda extends Animal {
     private String corPrimaria;
     private String corSecundaria;
 
+    public Panda(int idade) {
+        super("Panda", idade);
+    }
+
     public String getCorPrimaria() {
         return corPrimaria;
     }

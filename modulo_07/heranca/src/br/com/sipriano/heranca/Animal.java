@@ -12,6 +12,13 @@ public class Animal {
     private String nome;
     private int idade;
 
+    //Também afeta os filhos, pra criar tem que ter nome
+    //Tem que chamar esse construtor e passa os dados
+    public Animal(String nome, int idade) {
+        this.nome = nome;
+        this.idade = idade;
+    }
+
     public String getNome() {
         return nome;
     }
