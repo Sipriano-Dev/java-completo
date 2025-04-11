@@ -1,6 +1,4 @@
-package br.com.sipriano.outropacote;
-
-import br.com.sipriano.heranca.Animal;
+package br.com.sipriano.heranca.outropacote;
 
 public class Main {
     public static void main(String[] args) {

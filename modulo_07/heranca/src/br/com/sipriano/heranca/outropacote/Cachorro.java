@@ -1,6 +1,6 @@
-package br.com.sipriano.outropacote;
+package br.com.sipriano.heranca.outropacote;
 
-import br.com.sipriano.heranca.Animal;
+import br.com.sipriano.heranca.animais.Animal;
 
 public class Cachorro extends Animal {
 

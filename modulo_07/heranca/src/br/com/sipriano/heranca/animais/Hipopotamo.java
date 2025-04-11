@@ -1,4 +1,4 @@
-package br.com.sipriano.heranca;
+package br.com.sipriano.heranca.animais;
 
 public class Hipopotamo extends Animal {
 
