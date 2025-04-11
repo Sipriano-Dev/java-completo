@@ -1,6 +1,6 @@
-package br.com.sipriano;
+package br.com.sipriano.heranca;
 
-public class Hipopotamo extends Animal{
+public class Hipopotamo extends Animal {
 
     private int forcaMordida;
 

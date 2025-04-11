@@ -1,6 +1,6 @@
-package br.com.sipriano;
+package br.com.sipriano.heranca;
 
-public class Panda extends Animal{
+public class Panda extends Animal {
 
     private String corPrimaria;
     private String corSecundaria;

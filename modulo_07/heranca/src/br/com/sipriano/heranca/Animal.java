@@ -1,4 +1,11 @@
-package br.com.sipriano;
+package br.com.sipriano.heranca;
+
+/**
+ * public -> visivel em qualquer lugar
+ * private -> visivel apenas na propria classe
+ * package ou default -> somente dentro do pacote
+ * protected -> dentros das classes filhas OU pacote
+ */
 
 public class Animal {
 
@@ -33,7 +40,7 @@ public class Animal {
         System.out.println("ZZZZZZZZ");
     }
 
-    public void imprimirDados() {
+    protected void imprimirDados() {
         System.out.println("Nome: " + this.nome);
         System.out.println("Idade: " + this.idade);
     }

@@ -1,4 +1,4 @@
-package br.com.sipriano;
+package br.com.sipriano.heranca;
 
 public class Main {
 
@@ -14,6 +14,9 @@ public class Main {
         hipopotamo.setNome("Hipopotamo");
         hipopotamo.setIdade(20);
         hipopotamo.imprimirDados();
+
+        Animal animal = new Animal();
+        animal.imprimirDados();
 
     }
 
