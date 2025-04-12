@@ -14,5 +14,5 @@ public enum TipoSexo {
     public String getDescricao() {
         return descricao;
     }
-    
+
 }

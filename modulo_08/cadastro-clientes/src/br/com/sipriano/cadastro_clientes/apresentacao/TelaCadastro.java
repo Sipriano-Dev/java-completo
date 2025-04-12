@@ -1,5 +1,7 @@
 package br.com.sipriano.cadastro_clientes.apresentacao;
 
+import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
+
 import javax.swing.*;
 
 public class TelaCadastro extends JFrame {
@@ -10,7 +12,9 @@ public class TelaCadastro extends JFrame {
 
     private JTextField campoNome;
     private JTextField campoCPF;
-    private JComboBox<String> campoSexo;
+    private JComboBox<TipoSexo> campoSexo;
+
+    private JButton botaoSalvar;
 
     public TelaCadastro() {
         construirTela();
@@ -50,14 +54,17 @@ public class TelaCadastro extends JFrame {
         labelSexo.setBounds(20, 100, 200, 20);
         getContentPane().add(labelSexo);
 
-        String[] tiposSexo = {"Masculino", "Feminino", "Outros"};
+        //O primeiro valor a aparecer é vazio
+        TipoSexo[] tiposSexo = {null, TipoSexo.M, TipoSexo.F, TipoSexo.O};
         campoSexo = new JComboBox<>(tiposSexo);
         campoSexo.setBounds(20, 120, 200, 20);
         getContentPane().add(campoSexo);
     }
 
     private void adicionarBotoes() {
-
+        botaoSalvar = new JButton("Salvar");
+        botaoSalvar.setBounds(20, 160, 70, 20);
+        getContentPane().add(botaoSalvar);
     }
 
     private void adicionarComponentesFoto() {
