@@ -1,10 +1,16 @@
 package br.com.sipriano.heranca.empresa;
 
-public class Funcionario {
+//Não instancia mais, os filhos tem que implementar os metodos abstratos
+public abstract class Funcionario {
 
     private String nome;
     private String cpf;
     private double salario;
+
+    //Nunca pode ser privado, pra permitir a implementação
+    //Metodos abstratos só podem em classes abstratas
+    //Precisa ser implementado na subclasse
+    public abstract double calcularBonificacaoAnual();
 
     public double calcularBonificacao() {
         return (salario / 10) + 50;

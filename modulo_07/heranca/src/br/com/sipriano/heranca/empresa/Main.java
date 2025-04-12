@@ -15,6 +15,11 @@ public class Main {
         gerente.setSalario(3000);
         gerente.imprimirRemuneracao();
 
+        System.out.println("----------------");
+        System.out.println("Bonus anual");
+        System.out.println("Gerente: " + gerente.calcularBonificacaoAnual());
+        System.out.println("Tecnico: " + tecnico.calcularBonificacaoAnual());
+
 
 
     }
