@@ -1,8 +1,11 @@
 package br.com.sipriano.cadastro_clientes.apresentacao;
 
+import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TelaCadastro extends JFrame {
 
@@ -64,11 +67,33 @@ public class TelaCadastro extends JFrame {
     private void adicionarBotoes() {
         botaoSalvar = new JButton("Salvar");
         botaoSalvar.setBounds(20, 160, 70, 20);
+
+        ActionListener acaoBotaoSalvar = botaoSalvarActionListener();
+        botaoSalvar.addActionListener(acaoBotaoSalvar);
+
         getContentPane().add(botaoSalvar);
     }
 
     private void adicionarComponentesFoto() {
 
+    }
+
+    //esse metodo vai retorna uma implementação de uma classe anônima que conteém um metodo
+    //vc usa classe anonima ao inves de cria uma classe normal, pra que a classe tem acesso
+    //aos atributos da classe TelaCadastro
+    private ActionListener botaoSalvarActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Cliente cliente = new Cliente();
+                cliente.setNome(campoNome.getText());
+                cliente.setCpf(campoCPF.getText());
+                //Fazendo casting pois o JComboBox retorna um Optional
+                //e sei que lá só tem os tiposexo
+                cliente.setSexo((TipoSexo) campoSexo.getSelectedItem());
+                JOptionPane.showMessageDialog(null, cliente);
+            }
+        };
     }
 
 }
