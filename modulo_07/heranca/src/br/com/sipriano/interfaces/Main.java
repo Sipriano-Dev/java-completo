@@ -14,6 +14,12 @@ public class Main {
         Autenticacao biometrica = new CredencialBiometrica(new byte[]{});
         boolean isBiometriaAutenticado = autenticador.autenticar(biometrica);
 
+        System.out.println("-----------------------");
+
+        CarroEletrico.imprimirAlgo();
+        CarroHibrido carroHibrido = new CarroHibrido();
+        carroHibrido.fazAlgo();
+
 
     }
 
