@@ -2,6 +2,8 @@ package br.com.sipriano.cadastro_clientes.dominio;
 
 import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
 
+import java.util.Arrays;
+import java.util.Objects;
 import java.util.UUID;
 
 public class Cliente {
@@ -56,4 +58,31 @@ public class Cliente {
         this.foto = foto;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "codigo=" + codigo +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", sexo=" + sexo +
+                ", foto=" + Arrays.toString(foto) +
+                '}';
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Cliente cliente)) return false;
+
+        return Objects.equals(codigo, cliente.codigo) && Objects.equals(nome, cliente.nome) && Objects.equals(cpf, cliente.cpf) && sexo == cliente.sexo;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hashCode(codigo);
+        result = 31 * result + Objects.hashCode(nome);
+        result = 31 * result + Objects.hashCode(cpf);
+        result = 31 * result + Objects.hashCode(sexo);
+        return result;
+    }
 }
