@@ -2,6 +2,8 @@ package br.com.sipriano.cadastro_clientes.apresentacao;
 
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
+import br.com.sipriano.cadastro_clientes.logicanegocio.Cadastro;
+import br.com.sipriano.cadastro_clientes.logicanegocio.LojaCadastroClienteFake;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -91,7 +93,10 @@ public class TelaCadastro extends JFrame {
                 //Fazendo casting pois o JComboBox retorna um Optional
                 //e sei que lá só tem os tiposexo
                 cliente.setSexo((TipoSexo) campoSexo.getSelectedItem());
-                JOptionPane.showMessageDialog(null, cliente);
+
+                Cadastro<Cliente> logicaCadastro = new LojaCadastroClienteFake();
+                logicaCadastro.salvar(cliente);
+
             }
         };
     }
