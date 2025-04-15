@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Cliente {
+public class Cliente implements Comparable{
 
     private UUID codigo;
     private String nome;
@@ -84,5 +84,19 @@ public class Cliente {
         result = 31 * result + Objects.hashCode(cpf);
         result = 31 * result + Objects.hashCode(sexo);
         return result;
+    }
+
+    /**
+     *
+     * @param o the object to be compared.
+     * @return
+     *
+     * 0 -> são iguais -> 1 = 1
+     * 1 -> é maior -> 2 > 1
+     * -1 -> é menor 1 < 2
+     */
+    @Override
+    public int compareTo(Object o) {
+        return 0;
     }
 }
