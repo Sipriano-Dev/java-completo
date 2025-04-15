@@ -61,7 +61,7 @@ public class Cliente implements Comparable<Cliente> {
 
     @Override
     public String toString() {
-        return "Cliente{" +
+        return "\nCliente{" +
                 "codigo=" + codigo +
                 ", nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
