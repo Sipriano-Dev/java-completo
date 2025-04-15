@@ -6,7 +6,8 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Cliente implements Comparable{
+//Implementa o compare to pra dizer qual criterio de comparação
+public class Cliente implements Comparable<Cliente> {
 
     private UUID codigo;
     private String nome;
@@ -91,12 +92,18 @@ public class Cliente implements Comparable{
      * @param o the object to be compared.
      * @return
      *
-     * 0 -> são iguais -> 1 = 1
-     * 1 -> é maior -> 2 > 1
-     * -1 -> é menor 1 < 2
+     * 0 -> são iguais -> this = o
+     * 1 -> é maior -> this > o
+     * -1 -> é menor this < o
      */
     @Override
-    public int compareTo(Object o) {
-        return 0;
+    public int compareTo(Cliente o) {
+        //Compara por nome, String compara por ordem alfabetica
+        //Usa um segundo fator se for igual o primeiro
+        int fator = this.nome.compareTo(o.getNome());
+        //if simples com só um elemento não precisa de chaves
+        if (fator == 0) fator = this.cpf.compareTo(o.getCpf());
+
+        return fator;
     }
 }
