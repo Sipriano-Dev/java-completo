@@ -12,4 +12,6 @@ public interface Cadastro<TIPO> {
 
     void atualizar(TIPO objAtualizar);
 
+    void imprimirRegistros();
+
 }

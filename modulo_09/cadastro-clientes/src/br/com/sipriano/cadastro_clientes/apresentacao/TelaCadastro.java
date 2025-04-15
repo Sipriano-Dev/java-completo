@@ -3,6 +3,7 @@ package br.com.sipriano.cadastro_clientes.apresentacao;
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
 import br.com.sipriano.cadastro_clientes.logicanegocio.Cadastro;
+import br.com.sipriano.cadastro_clientes.logicanegocio.LogicaCadastroMemoria;
 import br.com.sipriano.cadastro_clientes.logicanegocio.LojaCadastroClienteFake;
 
 import javax.swing.*;
@@ -19,10 +20,13 @@ public class TelaCadastro extends JFrame {
     private JTextField campoCPF;
     private JComboBox<TipoSexo> campoSexo;
 
+    Cadastro<Cliente> logicaCadastro;
+
     private JButton botaoSalvar;
 
     public TelaCadastro() {
         construirTela();
+        this.logicaCadastro = new LogicaCadastroMemoria();
     }
 
     private void construirTela() {
@@ -94,9 +98,12 @@ public class TelaCadastro extends JFrame {
                 //e sei que lá só tem os tiposexo
                 cliente.setSexo((TipoSexo) campoSexo.getSelectedItem());
 
-                Cadastro<Cliente> logicaCadastro = new LojaCadastroClienteFake();
-                logicaCadastro.salvar(cliente);
+                //Instanciar aqui, sempre que salvar um cadastro vai estar instanciando uma lista
+                //melhor no construtor dessa classe
+                //Cadastro<Cliente> logicaCadastro = new LogicaCadastroMemoria();
 
+                logicaCadastro.salvar(cliente);
+                logicaCadastro.imprimirRegistros();
             }
         };
     }

@@ -25,4 +25,9 @@ public class LojaCadastroClienteFake implements Cadastro<Cliente> {
     public void atualizar(Cliente cliente) {
 
     }
+
+    @Override
+    public void imprimirRegistros() {
+
+    }
 }
