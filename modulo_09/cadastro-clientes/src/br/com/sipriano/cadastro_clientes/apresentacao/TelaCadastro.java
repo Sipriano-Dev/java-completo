@@ -2,6 +2,7 @@ package br.com.sipriano.cadastro_clientes.apresentacao;
 
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
+import br.com.sipriano.cadastro_clientes.dominio.exceptions.CpfInvalidoException;
 import br.com.sipriano.cadastro_clientes.logicanegocio.Cadastro;
 import br.com.sipriano.cadastro_clientes.logicanegocio.LogicaCadastroMemoria;
 import br.com.sipriano.cadastro_clientes.logicanegocio.LojaCadastroClienteFake;
@@ -102,8 +103,15 @@ public class TelaCadastro extends JFrame {
                 //melhor no construtor dessa classe
                 //Cadastro<Cliente> logicaCadastro = new LogicaCadastroMemoria();
 
-                logicaCadastro.salvar(cliente);
-                logicaCadastro.imprimirRegistros();
+                try {
+                    logicaCadastro.salvar(cliente);
+                    logicaCadastro.imprimirRegistros();
+                } catch (CpfInvalidoException ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage());
+                }
+
             }
         };
     }
