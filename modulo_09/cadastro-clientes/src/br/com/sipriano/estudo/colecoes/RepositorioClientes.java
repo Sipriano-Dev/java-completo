@@ -1,4 +1,4 @@
-package br.com.sipriano.cadastro_clientes.colecoes;
+package br.com.sipriano.estudo.colecoes;
 
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 
