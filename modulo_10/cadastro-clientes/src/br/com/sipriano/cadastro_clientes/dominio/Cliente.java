@@ -13,6 +13,7 @@ public class Cliente implements Comparable<Cliente> {
     private String nome;
     private String cpf;
     private TipoSexo sexo;
+    private Integer idade;
     private byte[] foto;
 
     public Cliente() {
@@ -49,6 +50,10 @@ public class Cliente implements Comparable<Cliente> {
 
     public void setSexo(TipoSexo sexo) {
         this.sexo = sexo;
+    }
+
+    public Integer getIdade() {
+        return idade;
     }
 
     public byte[] getFoto() {
