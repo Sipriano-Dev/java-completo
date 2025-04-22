@@ -5,17 +5,19 @@ import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
 import br.com.sipriano.cadastro_clientes.dominio.exceptions.CpfInvalidoException;
 import br.com.sipriano.cadastro_clientes.logicanegocio.Cadastro;
 import br.com.sipriano.cadastro_clientes.logicanegocio.LogicaCadastroMemoria;
-import br.com.sipriano.cadastro_clientes.logicanegocio.LojaCadastroClienteFake;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
 
 public class TelaCadastro extends JFrame {
 
     private JLabel labelNome;
     private JLabel labelCPF;
     private JLabel labelSexo;
+    private JLabel labelFoto;
 
     private JTextField campoNome;
     private JTextField campoCPF;
@@ -82,7 +84,19 @@ public class TelaCadastro extends JFrame {
     }
 
     private void adicionarComponentesFoto() {
+        //Pega a localização de um recurso dentro do projeto passando o nome
+        //getClass é de object portanto essa class pode usar
+        String caminhoArquivo = "/br/com/sipriano/cadastro_clientes/apresentacao/img.png";
+        URL localizacao = getClass().getResource(caminhoArquivo);
+        ImageIcon imageIcon = new ImageIcon(localizacao);
 
+        Image imagemRedimensionada = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(imagemRedimensionada);
+
+        labelFoto = new JLabel();
+        labelFoto.setIcon(imageIcon);
+        labelFoto.setBounds(240, 0, 200, 200);
+        getContentPane().add(labelFoto);
     }
 
     //esse metodo vai retorna uma implementação de uma classe anônima que conteém um metodo
