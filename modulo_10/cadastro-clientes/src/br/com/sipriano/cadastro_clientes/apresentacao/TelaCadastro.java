@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.net.URL;
 
 public class TelaCadastro extends JFrame {
@@ -26,6 +27,7 @@ public class TelaCadastro extends JFrame {
     Cadastro<Cliente> logicaCadastro;
 
     private JButton botaoSalvar;
+    private JButton botaoEscolherFoto;
 
     public TelaCadastro() {
         construirTela();
@@ -97,6 +99,29 @@ public class TelaCadastro extends JFrame {
         labelFoto.setIcon(imageIcon);
         labelFoto.setBounds(240, 0, 200, 200);
         getContentPane().add(labelFoto);
+
+        botaoEscolherFoto = new JButton("Alterar Foto");
+        botaoEscolherFoto.setBounds(260, 220, 160, 20);
+        botaoEscolherFoto.addActionListener(botaoEscolherFotoActionListener());
+
+        getContentPane().add(botaoEscolherFoto);
+    }
+
+    private ActionListener botaoEscolherFotoActionListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser fileChooser = new JFileChooser();
+                //Retorna um numero pra saber se escolheu ou não
+                int opcao = fileChooser.showOpenDialog(TelaCadastro.this);
+                if (opcao == JFileChooser.APPROVE_OPTION) {
+                    File arquivoSelecionado = fileChooser.getSelectedFile();
+                    String caminho = arquivoSelecionado.getAbsolutePath();
+                    ImageIcon foto = new ImageIcon(caminho);
+                    labelFoto.setIcon(foto);
+                }
+            }
+        };
     }
 
     //esse metodo vai retorna uma implementação de uma classe anônima que conteém um metodo
