@@ -5,6 +5,7 @@ import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
 import br.com.sipriano.cadastro_clientes.dominio.exceptions.CpfInvalidoException;
 import br.com.sipriano.cadastro_clientes.logicanegocio.Cadastro;
 import br.com.sipriano.cadastro_clientes.logicanegocio.LogicaCadastroMemoria;
+import br.com.sipriano.cadastro_clientes.utilitarios.ConversorIconParaBitArray;
 
 import javax.swing.*;
 import java.awt.*;
@@ -112,7 +113,6 @@ public class TelaCadastro extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileChooser = new JFileChooser();
-                //Retorna um numero pra saber se escolheu ou não
                 int opcao = fileChooser.showOpenDialog(TelaCadastro.this);
                 if (opcao == JFileChooser.APPROVE_OPTION) {
                     File arquivoSelecionado = fileChooser.getSelectedFile();
@@ -134,13 +134,11 @@ public class TelaCadastro extends JFrame {
                 Cliente cliente = new Cliente();
                 cliente.setNome(campoNome.getText());
                 cliente.setCpf(campoCPF.getText());
-                //Fazendo casting pois o JComboBox retorna um Optional
-                //e sei que lá só tem os tiposexo
+
                 cliente.setSexo((TipoSexo) campoSexo.getSelectedItem());
 
-                //Instanciar aqui, sempre que salvar um cadastro vai estar instanciando uma lista
-                //melhor no construtor dessa classe
-                //Cadastro<Cliente> logicaCadastro = new LogicaCadastroMemoria();
+                byte[] byteArrayFoto = ConversorIconParaBitArray.converter(labelFoto.getIcon());
+                cliente.setFoto(byteArrayFoto);
 
                 try {
                     logicaCadastro.salvar(cliente);
