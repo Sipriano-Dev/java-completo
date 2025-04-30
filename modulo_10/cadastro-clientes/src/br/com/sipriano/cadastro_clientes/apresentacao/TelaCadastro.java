@@ -87,14 +87,8 @@ public class TelaCadastro extends JFrame {
     }
 
     private void adicionarComponentesFoto() {
-        //Pega a localização de um recurso dentro do projeto passando o nome
-        //getClass é de object portanto essa class pode usar
-        String caminhoArquivo = "/br/com/sipriano/cadastro_clientes/apresentacao/img.png";
-        URL localizacao = getClass().getResource(caminhoArquivo);
-        ImageIcon imageIcon = new ImageIcon(localizacao);
 
-        Image imagemRedimensionada = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
-        imageIcon = new ImageIcon(imagemRedimensionada);
+        ImageIcon imageIcon = obterImagemPadraoFoto();
 
         labelFoto = new JLabel();
         labelFoto.setIcon(imageIcon);
@@ -106,6 +100,16 @@ public class TelaCadastro extends JFrame {
         botaoEscolherFoto.addActionListener(botaoEscolherFotoActionListener());
 
         getContentPane().add(botaoEscolherFoto);
+    }
+
+    private ImageIcon obterImagemPadraoFoto() {
+        String caminhoArquivo = "/br/com/sipriano/cadastro_clientes/apresentacao/img.png";
+        URL localizacao = getClass().getResource(caminhoArquivo);
+        ImageIcon imageIcon = new ImageIcon(localizacao);
+
+        Image imagemRedimensionada = imageIcon.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        imageIcon = new ImageIcon(imagemRedimensionada);
+        return imageIcon;
     }
 
     private ActionListener botaoEscolherFotoActionListener() {
@@ -142,7 +146,13 @@ public class TelaCadastro extends JFrame {
 
                 try {
                     logicaCadastro.salvar(cliente);
-                    logicaCadastro.imprimirRegistros();
+                    campoNome.setText("");
+                    campoCPF.setText("");
+                    campoSexo.setSelectedIndex(0);
+                    labelFoto.setIcon(TelaCadastro.this.obterImagemPadraoFoto());
+
+                    JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+                    
                 } catch (CpfInvalidoException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage());
                 } catch (Exception ex) {

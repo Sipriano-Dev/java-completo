@@ -2,6 +2,7 @@ package br.com.sipriano.cadastro_clientes.logicanegocio;
 
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import br.com.sipriano.cadastro_clientes.dominio.exceptions.CpfInvalidoException;
+import br.com.sipriano.cadastro_clientes.utilitarios.GerenciadorArquivos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,10 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
 
     @Override
     public void salvar(Cliente cliente) throws CpfInvalidoException {
-        //Valida dentro da classe lógica
-        //Como vai lançar erro, não adiciona o cliente
-        //se tiver algo errado
-        //Não trata aqui, vc deixa quem chama trata, pois ele ve
-        //o erro e resolve, mudando os dados etc, então vc propaga com uma declaração
+
         ValidadorCliente.validar(cliente);
         lista.add(cliente);
+        GerenciadorArquivos.persistirArquivo(cliente.getNome() + ".jpg", cliente.getFoto());
     }
 
     @Override

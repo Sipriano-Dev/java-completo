@@ -25,6 +25,10 @@ public class ValidadorCliente {
             throw new DadoObrigatorioException("Campo sexo é obrigatório");
         }
 
+        if (cliente.getFoto() == null) {
+            throw new DadoObrigatorioException("Foto do cliente é obrigatoria!");
+        }
+
     }
 
 
