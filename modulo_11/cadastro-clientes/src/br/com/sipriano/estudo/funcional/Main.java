@@ -19,6 +19,21 @@ public class Main {
 
         System.out.println("Soma: " + soma.calcular(5, 3));
         System.out.println("Subtração: " + subtracao.calcular(5, 3));
+
+        //Se for usar mais de uma linha então tem que usar chaves e return
+        Calculadora calc = (x, y) -> {
+            var result = x + y;
+            return result * 2;
+        };
+
+        //Sem parametros
+        //Executor executor = () -> subtracao.calcular(5, 3);
+        //não precisa de parenteses
+        Executor executor = param -> subtracao.calcular(param, 3);
+        executor.executa(50);
+
+
+
     }
 
 }
