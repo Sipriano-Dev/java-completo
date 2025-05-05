@@ -6,6 +6,7 @@ import br.com.sipriano.cadastro_clientes.utilitarios.GerenciadorArquivos;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 public class LogicaCadastroMemoria implements Cadastro<Cliente> {
@@ -25,7 +26,7 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
     }
 
     @Override
-    public Cliente buscar(UUID codigo) {
+    public Optional<Cliente> buscar(UUID codigo) {
         Cliente clienteEncontrado = null;
         for (Cliente c : lista) {
             if (c.getCodigo().equals(codigo)) {
@@ -33,12 +34,13 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
                 break;//Vai parar quando encontra o cliente, finaliza o for, não obrigatorio, mais eficiente
             }
         }
-        return clienteEncontrado;
+        //nesse caso pode ou não ter null, por isso ofNullable
+        return Optional.ofNullable(clienteEncontrado);
     }
 
     @Override
     public void deletar(UUID codigo) {
-        Cliente clienteEncontrado = this.buscar(codigo);
+        Optional<Cliente> clienteEncontrado = this.buscar(codigo);
         if (clienteEncontrado != null) {
             lista.remove(clienteEncontrado);
         }

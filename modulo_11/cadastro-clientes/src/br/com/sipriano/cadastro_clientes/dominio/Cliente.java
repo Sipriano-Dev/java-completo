@@ -18,6 +18,7 @@ public class Cliente implements Comparable<Cliente> {
 
     public Cliente() {
         this.codigo = UUID.randomUUID();
+        System.out.println("Código do cliente: " + this.codigo.toString());
     }
 
     public UUID getCodigo() {
@@ -54,6 +55,10 @@ public class Cliente implements Comparable<Cliente> {
 
     public Integer getIdade() {
         return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
     }
 
     public byte[] getFoto() {
