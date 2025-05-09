@@ -3,6 +3,7 @@ package br.com.sipriano.cadastro_clientes.logicanegocio;
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 
 import javax.swing.*;
+import java.util.Optional;
 import java.util.UUID;
 
 public class LojaCadastroClienteFake implements Cadastro<Cliente> {
@@ -12,7 +13,7 @@ public class LojaCadastroClienteFake implements Cadastro<Cliente> {
     }
 
     @Override
-    public Cliente buscar(UUID codigo) {
+    public Optional<Cliente> buscar(UUID codigo) {
         return null;
     }
 

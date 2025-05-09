@@ -40,10 +40,9 @@ public class LogicaCadastroMemoria implements Cadastro<Cliente> {
 
     @Override
     public void deletar(UUID codigo) {
-        Optional<Cliente> clienteEncontrado = this.buscar(codigo);
-        if (clienteEncontrado != null) {
-            lista.remove(clienteEncontrado);
-        }
+        this.buscar(codigo)
+                .ifPresentOrElse(cliente -> lista.remove(cliente),
+                        () -> System.out.println("Cliente não removido, código inexistente"));
     }
 
     @Override

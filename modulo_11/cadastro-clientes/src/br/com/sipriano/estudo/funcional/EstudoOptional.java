@@ -2,6 +2,7 @@ package br.com.sipriano.estudo.funcional;
 
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
+import br.com.sipriano.cadastro_clientes.dominio.exceptions.CpfInvalidoException;
 import br.com.sipriano.cadastro_clientes.logicanegocio.LogicaCadastroMemoria;
 
 import java.util.Optional;
@@ -10,22 +11,37 @@ import java.util.UUID;
 public class EstudoOptional {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws CpfInvalidoException {
 
+        var logica = new LogicaCadastroMemoria();
+        var cliente = new Cliente();
+        cliente.setIdade(26);
+        cliente.setNome("Doida");
+        cliente.setSexo(TipoSexo.F);
+        cliente.setCpf("36434611133");
+        cliente.setFoto(new byte[]{});
+
+        var codigoParaBuscar = cliente.getCodigo();
+
+        //logica.salvar(cliente);
+
+        System.out.println("Antes de remover");
+        logica.imprimirRegistros();
+        logica.deletar(codigoParaBuscar);
+        System.out.println("Após remover");
+        logica.imprimirRegistros();
+
+    }
+
+    private static void trabalhandoComOrElse() {
         Optional<Cliente> possivelCliente = clienteVazio();
-        //se o cliente estiver vazio vai usar o que ta dentro dos parametros
-        //evitando vazio q da null pointer exception
         var cliente = possivelCliente.orElse(new Cliente());
 
-        //Porconta q usa suplier aki, só será instanciado se usar metodo orElseGet, diferente do de cima
-        //que vai instancia de qq forma, só não vai passar pro cliente
-        cliente = possivelCliente.orElseGet(() -> new Cliente()); //boa prática
+        cliente = possivelCliente.orElseGet(() -> new Cliente());
 
-        //NoSuchElementException, porém pode ser sobrecarregado pra retorna a exception que vc quiser
         cliente = possivelCliente.orElseThrow(() -> new RuntimeException("O cliente não deveria estar vazio!"));
 
         System.out.println(cliente);
-
     }
 
     private static void exemplosBasicosOptional() {
@@ -40,8 +56,8 @@ public class EstudoOptional {
         }
 
         var logica = new LogicaCadastroMemoria();
-        Cliente clienteEncontrdo = logica.buscar(UUID.randomUUID());
-        System.out.println(clienteEncontrdo.getSexo().getDescricao());
+        Cliente clienteEncontrado = logica.buscar(UUID.randomUUID()).get();
+        System.out.println(clienteEncontrado.getSexo().getDescricao());
     }
 
     static Optional<Cliente> clienteVazio() {
