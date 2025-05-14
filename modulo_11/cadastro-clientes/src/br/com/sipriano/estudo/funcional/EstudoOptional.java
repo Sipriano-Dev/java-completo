@@ -13,6 +13,29 @@ public class EstudoOptional {
 
     public static void main(String[] args) throws CpfInvalidoException {
 
+        var possivelCliente = new Cliente();
+        possivelCliente.setSexo(TipoSexo.M);
+
+//        if (possivelCliente.isPresent()) {
+//            var cliente = possivelCliente.get();
+//            if (cliente.getSexo() != null) {
+//                System.out.println(cliente.getSexo().getDescricao());
+//            }
+//        }
+
+
+        //Forma segura
+        var sexoCliente = Optional
+                .ofNullable(possivelCliente)
+                .map(cliente -> cliente.getSexo())
+                .map(tipoSexo -> tipoSexo.getDescricao())
+                .orElse(null);
+
+        System.out.println(sexoCliente);
+
+    }
+
+    private static void exemplosIfPresent() {
         var logica = new LogicaCadastroMemoria();
         var cliente = new Cliente();
         cliente.setIdade(26);
@@ -30,7 +53,6 @@ public class EstudoOptional {
         logica.deletar(codigoParaBuscar);
         System.out.println("Após remover");
         logica.imprimirRegistros();
-
     }
 
     private static void trabalhandoComOrElse() {
