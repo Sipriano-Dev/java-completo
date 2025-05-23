@@ -5,6 +5,7 @@ import br.com.sipriano.cadastro_clientes.dominio.Cliente;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.UUID;
 
 //Data Access Object
 public class ClienteDAO {
@@ -62,6 +63,25 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
 
+
+    }
+
+    public void deletar(UUID codigo) {
+
+        try {
+
+            String comandoSQL = """
+                        DELETE FROM clientes WHERE codigo = ?
+                    """;
+            PreparedStatement comando = conexao.prepareStatement(comandoSQL);
+            comando.setString(1, codigo.toString());
+
+
+            comando.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

@@ -10,6 +10,16 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
+        var conexao = FabricaConexoes.CriarConexao();
+        ClienteDAO dao = new ClienteDAO(conexao);
+
+        dao.deletar(UUID.fromString("c5991fcb-aac0-4545-8361-4b8d45b50503"));
+
+        conexao.close();
+
+    }
+
+    private static void exemploAtualizacao() throws SQLException {
         Cliente cliente = new Cliente();
         cliente.setCodigo(UUID.fromString("8c4bad8b-20be-4b07-971a-f7e994ec99a3"));
         cliente.setNome("Kelly");
@@ -24,7 +34,6 @@ public class Main {
 
 
         conexao.close();
-
     }
 
     private static void exemploInsert() throws SQLException {
