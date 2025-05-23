@@ -19,8 +19,8 @@ public class ClienteDAO {
 
         try {
             String comandoSQL = """
-                    INSERT INTO clientes (codigo, nome, sexo, cpf, idade)
-                    VALUES (?, ?, ?, ?, ?)
+                        INSERT INTO clientes (codigo, nome, sexo, cpf, idade)
+                        VALUES (?, ?, ?, ?, ?)
                     """;
             PreparedStatement comando = conexao.prepareStatement(comandoSQL);
             comando.setString(1, cliente.getCodigo().toString());
@@ -34,6 +34,34 @@ public class ClienteDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+    }
+
+    public void atualizar(Cliente cliente) {
+
+        try {
+
+            String comandoSQL = """
+                        UPDATE clientes
+                        SET nome = ?,
+                            sexo = ?,
+                            cpf = ?,
+                            idade = ?
+                        WHERE codigo = ?
+                    """;
+            PreparedStatement comando = conexao.prepareStatement(comandoSQL);
+            comando.setString(1, cliente.getNome());
+            comando.setString(2, cliente.getSexo().name());
+            comando.setString(3, cliente.getCpf());
+            comando.setInt(4, cliente.getIdade());
+            comando.setString(5, cliente.getCodigo().toString());
+
+            comando.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
 
     }
 
