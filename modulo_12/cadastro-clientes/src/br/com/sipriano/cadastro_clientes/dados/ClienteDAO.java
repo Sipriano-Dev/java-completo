@@ -32,6 +32,10 @@ public class ClienteDAO {
             comando.setString(2, cliente.getNome());
             comando.setString(3, cliente.getSexo().name());
             comando.setString(4, cliente.getCpf());
+
+//            if (cliente.getIdade() == null) {
+//                cliente.setIdade(18);
+//            }
             comando.setInt(5, cliente.getIdade());
 
             comando.execute();
