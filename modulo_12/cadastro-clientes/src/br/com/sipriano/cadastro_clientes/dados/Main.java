@@ -13,10 +13,19 @@ public class Main {
         var conexao = FabricaConexoes.CriarConexao();
         ClienteDAO dao = new ClienteDAO(conexao);
 
-        dao.deletar(UUID.fromString("c5991fcb-aac0-4545-8361-4b8d45b50503"));
+        dao.listar().forEach(System.out::println);
 
         conexao.close();
 
+    }
+
+    private static void exemploDelete() throws SQLException {
+        var conexao = FabricaConexoes.CriarConexao();
+        ClienteDAO dao = new ClienteDAO(conexao);
+
+        dao.deletar(UUID.fromString("c5991fcb-aac0-4545-8361-4b8d45b50503"));
+
+        conexao.close();
     }
 
     private static void exemploAtualizacao() throws SQLException {

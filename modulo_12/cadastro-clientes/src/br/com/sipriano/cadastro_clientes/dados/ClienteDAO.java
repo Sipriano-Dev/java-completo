@@ -1,10 +1,14 @@
 package br.com.sipriano.cadastro_clientes.dados;
 
 import br.com.sipriano.cadastro_clientes.dominio.Cliente;
+import br.com.sipriano.cadastro_clientes.dominio.enums.TipoSexo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 //Data Access Object
@@ -78,6 +82,44 @@ public class ClienteDAO {
 
 
             comando.execute();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    public List<Cliente> listar() {
+
+        try {
+
+            String comandoSQL = """
+                        SELECT * FROM clientes
+                    """;
+            PreparedStatement comando = conexao.prepareStatement(comandoSQL);
+
+            ResultSet result = comando.executeQuery();
+
+            List<Cliente> lista = new ArrayList<>();
+
+            while (result.next()) {
+                String codigo = result.getString("codigo");
+                String nome = result.getString("nome");
+                String sexo = result.getString("sexo");
+                String cpf = result.getString("cpf");
+                Integer idade = result.getInt("idade");
+
+                Cliente cliente = new Cliente();
+                cliente.setCodigo(UUID.fromString(codigo));
+                cliente.setNome(nome);
+                cliente.setSexo(TipoSexo.valueOf(sexo));
+                cliente.setCpf(cpf);
+                cliente.setIdade(idade);
+
+                lista.add(cliente);
+            }
+
+            return lista;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
