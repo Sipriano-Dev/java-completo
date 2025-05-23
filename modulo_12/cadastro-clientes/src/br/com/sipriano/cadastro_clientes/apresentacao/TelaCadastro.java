@@ -155,7 +155,11 @@ public class TelaCadastro extends JFrame {
                 cliente.setNome(campoNome.getText());
                 cliente.setCpf(campoCPF.getText());
                 cliente.setSexo((TipoSexo) campoSexo.getSelectedItem());
-                cliente.setIdade(Integer.valueOf(campoIdade.getText()));
+                try {
+                    cliente.setIdade(Integer.valueOf(campoIdade.getText()));
+                } catch (NumberFormatException ex) {
+                    JOptionPane.showMessageDialog(null, "Digite uma idade válida");
+                }
 
                 byte[] byteArrayFoto = ConversorIconParaBitArray.converter(labelFoto.getIcon());
                 cliente.setFoto(byteArrayFoto);
